@@ -59,12 +59,12 @@ static rt_err_t stm32_i2c_init(struct stm32_i2c *i2c_drv)
     rt_memset(i2c_handle, 0, sizeof(I2C_HandleTypeDef));
     struct stm32_i2c_config *cfg = i2c_drv->config;
     i2c_handle->Instance = cfg->Instance;
-    i2c_handle->Init.Timing = cfg->timing;
+    //i2c_handle->Init.Timing = cfg->timing;
     i2c_handle->Init.OwnAddress1 = 0;
     i2c_handle->Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
     i2c_handle->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
     i2c_handle->Init.OwnAddress2 = 0;
-    i2c_handle->Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+    //i2c_handle->Init.OwnAddress2Masks = I2C_OA2_NOMASK;
     i2c_handle->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
     i2c_handle->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
     if (HAL_I2C_DeInit(i2c_handle) != HAL_OK)
@@ -78,16 +78,16 @@ static rt_err_t stm32_i2c_init(struct stm32_i2c *i2c_drv)
     }
 
     /* Configure Analogue filter */
-    if (HAL_I2CEx_ConfigAnalogFilter(i2c_handle, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-    {
-        return -RT_EFAULT;
-    }
+//    if (HAL_I2CEx_ConfigAnalogFilter(i2c_handle, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+//    {
+//        return -RT_EFAULT;
+//    }
 
     /* Configure Digital filter */
-    if (HAL_I2CEx_ConfigDigitalFilter(i2c_handle, 0) != HAL_OK)
-    {
-        return -RT_EFAULT;
-    }
+//    if (HAL_I2CEx_ConfigDigitalFilter(i2c_handle, 0) != HAL_OK)
+//    {
+//        return -RT_EFAULT;
+//    }
 
     /* I2C2 DMA Init */
     if (i2c_drv->i2c_dma_flag & I2C_USING_RX_DMA_FLAG)
@@ -123,7 +123,7 @@ static rt_err_t stm32_i2c_init(struct stm32_i2c *i2c_drv)
 
 static rt_err_t stm32_i2c_configure(struct rt_i2c_bus_device *bus)
 {
-    int ret = -RT_ERROR;
+    //int ret = -RT_ERROR;
     RT_ASSERT(RT_NULL != bus);
     struct stm32_i2c *i2c_drv = rt_container_of(bus, struct stm32_i2c, i2c_bus);
 
@@ -307,12 +307,13 @@ out:
     {
         LOG_D("I2C NACK Error now stoped");
         /* Send stop signal to prevent bus lock-up */
-        handle->Instance->CR1 |= I2C_IT_STOPI;
+        //handle->Instance->CR1 |= I2C_IT_STOPI;
     }
     if (handle->ErrorCode == HAL_I2C_ERROR_BERR)
     {
         LOG_D("I2C BUS Error now stoped");
-        handle->Instance->CR1 |= I2C_IT_STOPI;
+        //handle->Instance->CR1 |= I2C_IT_STOPI;
+		}
         ret=i-1;
     return ret;
 }
@@ -463,12 +464,12 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c)
     if (hi2c->ErrorCode == HAL_I2C_ERROR_AF)
     {
         LOG_D("I2C NACK Error now stoped");
-        hi2c->Instance->CR1 |= I2C_IT_STOPI;
+        //hi2c->Instance->CR1 |= I2C_IT_STOPI;
     }
     if (hi2c->ErrorCode == HAL_I2C_ERROR_BERR)
     {
         LOG_D("I2C BUS Error now stoped");
-        hi2c->Instance->CR1 |= I2C_IT_STOPI;
+        //hi2c->Instance->CR1 |= I2C_IT_STOPI;
     }
 }
 #ifdef BSP_USING_HARD_I2C1
