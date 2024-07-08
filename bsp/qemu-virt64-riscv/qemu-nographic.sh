@@ -3,4 +3,4 @@ dd if=/dev/zero of=sd.bin bs=1024 count=65536
 mkfs.fat sd.bin
 fi
 
-/home/rv/riscv2/riscv/bin/qemu-system-riscv64 -nographic -machine virt -m 256M -kernel rtthread.elf
+/home/rv/opt-ilp32/bin/qemu-system-riscv64ilp32  -cpu rv64 -M virt -m 1G -nographic -kernel rtthread.elf -S -s
