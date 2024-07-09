@@ -16,13 +16,13 @@
 #include "stackframe.h"
 
 .macro PUSH_8 reg
-    addi    sp, sp, -8
+    addi    sp, sp, -4
     STORE   \reg, (sp)
 .endm
 
 .macro POP_8 reg
     LOAD    \reg, (sp)
-    addi    sp, sp, 8
+    addi    sp, sp, 4
 .endm
 
 .macro RESERVE_CONTEXT

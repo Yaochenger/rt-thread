@@ -40,7 +40,7 @@ if PLATFORM == 'gcc':
     LPATH   = ''
 
     if BUILD == 'debug':
-        CFLAGS += ' -O0 -ggdb -fvar-tracking '
+        CFLAGS += ' -Os -ggdb -fvar-tracking '
         AFLAGS += ' -ggdb'
     else:
         CFLAGS += ' -O2 -Os'

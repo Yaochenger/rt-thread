@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    printf("Hello RISC-V\n");
+    // printf("Hello RISC-V\n");
 
     return 0;
 }

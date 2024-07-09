@@ -5,7 +5,7 @@
 
 #define RT_NAME_MAX 24
 #define RT_CPUS_NR 1
-#define RT_ALIGN_SIZE 8
+#define RT_ALIGN_SIZE 4
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
 #define RT_TICK_PER_SECOND 100
@@ -27,6 +27,7 @@
 #define RT_DEBUGING_ASSERT
 #define RT_DEBUGING_COLOR
 #define RT_DEBUGING_CONTEXT
+#define RT_DEBUGING_AUTO_INIT
 #define RT_USING_OVERFLOW_CHECK
 
 /* Inter-Thread communication */
@@ -97,9 +98,6 @@
 
 #define RT_USING_DEVICE_IPC
 #define RT_UNAMED_PIPE_NUMBER 64
-#define RT_USING_SYSTEM_WORKQUEUE
-#define RT_SYSTEM_WORKQUEUE_STACKSIZE 8192
-#define RT_SYSTEM_WORKQUEUE_PRIORITY 23
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
@@ -140,6 +138,21 @@
 
 /* Utilities */
 
+#define RT_USING_ULOG
+#define ULOG_OUTPUT_LVL_D
+#define ULOG_OUTPUT_LVL 7
+#define ULOG_ASSERT_ENABLE
+#define ULOG_LINE_BUF_SIZE 128
+
+/* log format */
+
+#define ULOG_USING_COLOR
+#define ULOG_OUTPUT_TIME
+#define ULOG_OUTPUT_LEVEL
+#define ULOG_OUTPUT_TAG
+#define ULOG_OUTPUT_THREAD_NAME
+/* end of log format */
+#define ULOG_BACKEND_USING_CONSOLE
 #define RT_USING_ADT
 #define RT_USING_ADT_AVL
 #define RT_USING_ADT_BITMAP

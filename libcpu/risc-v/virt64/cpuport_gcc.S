@@ -14,11 +14,11 @@
 
 START_POINT(_rt_thread_entry)
     LOAD    ra, (sp)    /* thread exit */
-    addi    sp, sp, 8
+    addi    sp, sp, 4
     LOAD    a0, (sp)    /* parameter */
-    addi    sp, sp, 8
+    addi    sp, sp, 4
     LOAD    t0, (sp)    /* tentry */
-    addi    sp, sp, 8
+    addi    sp, sp, 4
     mv      s1, ra
     jalr    t0
     jalr    s1
