@@ -13,7 +13,7 @@
 #include <rtdbg.h>
 
 #include <rtthread.h>
-#include <mm_aspace.h>
+// #include <mm_aspace.h>
 #include "riscv_mmu.h"
 
 #define WORD                            sizeof(rt_base_t)
@@ -91,14 +91,14 @@ rt_err_t rt_hw_backtrace_frame_unwind(rt_thread_t thread, struct rt_hw_backtrace
         }
         else
 #endif
-        if ((rt_kmem_v2p(fp) != ARCH_MAP_FAILED))
-        {
-            rc = _bt_kaddr(fp, frame);
-        }
-        else
-        {
-            rc = -RT_EINVAL;
-        }
+        // if ((rt_kmem_v2p(fp) != ARCH_MAP_FAILED))
+        // {
+        //     rc = _bt_kaddr(fp, frame);
+        // }
+        // else
+        // {
+        //     rc = -RT_EINVAL;
+        // }
     }
     else
     {

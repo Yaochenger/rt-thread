@@ -11,8 +11,8 @@
 #include <rtthread.h>
 #include <stdint.h>
 
-#include <mm_fault.h>
-#include "mmu.h"
+// #include <mm_fault.h>
+// #include "mmu.h"
 #include "encoding.h"
 #include "stack.h"
 #include "sbi.h"
@@ -63,8 +63,8 @@ void dump_regs(struct rt_hw_stack_frame *regs)
     rt_kprintf("\t%s\n", (regs->sstatus & (1 << 19)) ? "Permit to Read Executable-only Page" : "Not Permit to Read Executable-only Page");
     rt_size_t satp_v = read_csr(satp);
     rt_kprintf("satp = 0x%p\n", satp_v);
-    rt_kprintf("\tCurrent Page Table(Physical) = 0x%p\n", __MASKVALUE(satp_v, __MASK(44)) << PAGE_OFFSET_BIT);
-    rt_kprintf("\tCurrent ASID = 0x%p\n", __MASKVALUE(satp_v >> 44, __MASK(16)) << PAGE_OFFSET_BIT);
+    // rt_kprintf("\tCurrent Page Table(Physical) = 0x%p\n", __MASKVALUE(satp_v, __MASK(44)) << PAGE_OFFSET_BIT);
+    // rt_kprintf("\tCurrent ASID = 0x%p\n", __MASKVALUE(satp_v >> 44, __MASK(16)) << PAGE_OFFSET_BIT);
     const char *mode_str = "Unknown Address Translation/Protection Mode";
 
     switch (__MASKVALUE(satp_v >> 60, __MASK(4)))

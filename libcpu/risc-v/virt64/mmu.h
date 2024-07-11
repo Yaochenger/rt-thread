@@ -9,6 +9,7 @@
  * 2023-10-12     Shell        Add permission control API
  */
 
+#if 0
 #ifndef __MMU_H__
 #define __MMU_H__
 
@@ -75,3 +76,4 @@ void *rt_hw_mmu_pgtbl_create(void);
 void rt_hw_mmu_pgtbl_delete(void *pgtbl);
 
 #endif
+#endif /* 0 */

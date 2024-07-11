@@ -13,7 +13,7 @@
 #include <rtdevice.h>
 
 #include "board.h"
-#include "mm_aspace.h"
+// #include "mm_aspace.h"
 #include "tick.h"
 
 #include "drv_uart.h"

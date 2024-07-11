@@ -129,78 +129,78 @@ void sbi_set_timer(uint64_t val)
     }
 }
 
-void sbi_send_ipi(const unsigned long *hart_mask)
-{
-    struct sbi_ret ret;
+// void sbi_send_ipi(const unsigned long *hart_mask)
+// {
+//     struct sbi_ret ret;
 
-    /* Use the IPI legacy replacement extension, if available. */
-    if (has_ipi_extension)
-    {
-        ret = SBI_CALL2(SBI_EXT_ID_IPI, SBI_IPI_SEND_IPI, *hart_mask, 0);
-        RT_ASSERT(ret.error == SBI_SUCCESS);
-    }
-    else
-    {
-        (void)SBI_CALL1(SBI_SEND_IPI, 0, (uint64_t)hart_mask);
-    }
-}
+//     /* Use the IPI legacy replacement extension, if available. */
+//     if (has_ipi_extension)
+//     {
+//         ret = SBI_CALL2(SBI_EXT_ID_IPI, SBI_IPI_SEND_IPI, *hart_mask, 0);
+//         RT_ASSERT(ret.error == SBI_SUCCESS);
+//     }
+//     else
+//     {
+//         (void)SBI_CALL1(SBI_SEND_IPI, 0, (uint64_t)hart_mask);
+//     }
+// }
 
-void sbi_remote_fence_i(const unsigned long *hart_mask)
-{
-    struct sbi_ret ret;
+// void sbi_remote_fence_i(const unsigned long *hart_mask)
+// {
+//     struct sbi_ret ret;
 
-    /* Use the RFENCE legacy replacement extension, if available. */
-    if (has_rfnc_extension)
-    {
-        ret =
-            SBI_CALL2(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_FENCE_I, *hart_mask, 0);
-        RT_ASSERT(ret.error == SBI_SUCCESS);
-    }
-    else
-    {
-        (void)SBI_CALL1(SBI_REMOTE_FENCE_I, 0, (uint64_t)hart_mask);
-    }
-}
+//     /* Use the RFENCE legacy replacement extension, if available. */
+//     if (has_rfnc_extension)
+//     {
+//         ret =
+//             SBI_CALL2(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_FENCE_I, *hart_mask, 0);
+//         RT_ASSERT(ret.error == SBI_SUCCESS);
+//     }
+//     else
+//     {
+//         (void)SBI_CALL1(SBI_REMOTE_FENCE_I, 0, (uint64_t)hart_mask);
+//     }
+// }
 
-int sbi_remote_sfence_vma(const unsigned long *hart_mask,
-                          const unsigned long hart_mask_base,
-                          unsigned long start, unsigned long size)
-{
-    struct sbi_ret ret = {.error = SBI_SUCCESS};
+// int sbi_remote_sfence_vma(const unsigned long *hart_mask,
+//                           const unsigned long hart_mask_base,
+//                           unsigned long start, unsigned long size)
+// {
+//     struct sbi_ret ret = {.error = SBI_SUCCESS};
 
-    /* Use the RFENCE legacy replacement extension, if available. */
-    if (has_rfnc_extension)
-    {
-        ret = SBI_CALL4(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_SFENCE_VMA, *hart_mask,
-                        hart_mask_base, start, size);
-    }
-    else
-    {
-        (void)SBI_CALL3(SBI_REMOTE_SFENCE_VMA, 0, (uint64_t)hart_mask, start,
-                        size);
-    }
-    return ret.error;
-}
+//     /* Use the RFENCE legacy replacement extension, if available. */
+//     if (has_rfnc_extension)
+//     {
+//         ret = SBI_CALL4(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_SFENCE_VMA, *hart_mask,
+//                         hart_mask_base, start, size);
+//     }
+//     else
+//     {
+//         (void)SBI_CALL3(SBI_REMOTE_SFENCE_VMA, 0, (uint64_t)hart_mask, start,
+//                         size);
+//     }
+//     return ret.error;
+// }
 
-void sbi_remote_sfence_vma_asid(const unsigned long *hart_mask,
-                                unsigned long start, unsigned long size,
-                                unsigned long asid)
-{
-    struct sbi_ret ret;
+// void sbi_remote_sfence_vma_asid(const unsigned long *hart_mask,
+//                                 unsigned long start, unsigned long size,
+//                                 unsigned long asid)
+// {
+//     struct sbi_ret ret;
 
-    /* Use the RFENCE legacy replacement extension, if available. */
-    if (has_rfnc_extension)
-    {
-        ret = SBI_CALL5(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_SFENCE_VMA_ASID,
-                        *hart_mask, 0, start, size, asid);
-        RT_ASSERT(ret.error == SBI_SUCCESS);
-    }
-    else
-    {
-        (void)SBI_CALL4(SBI_REMOTE_SFENCE_VMA_ASID, 0, (uint64_t)hart_mask,
-                        start, size, asid);
-    }
-}
+//     /* Use the RFENCE legacy replacement extension, if available. */
+//     if (has_rfnc_extension)
+//     {
+//         ret = SBI_CALL5(SBI_EXT_ID_RFNC, SBI_RFNC_REMOTE_SFENCE_VMA_ASID,
+//                         *hart_mask, 0, start, size, asid);
+//         RT_ASSERT(ret.error == SBI_SUCCESS);
+//     }
+//     else
+//     {
+//         (void)SBI_CALL4(SBI_REMOTE_SFENCE_VMA_ASID, 0, (uint64_t)hart_mask,
+//                         start, size, asid);
+//     }
+// }
 
 int sbi_hsm_hart_start(unsigned long hart, unsigned long start_addr,
                        unsigned long priv)

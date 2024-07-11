@@ -63,7 +63,7 @@
 #define ARCH_CPU_64BIT
 #define RT_USING_CACHE
 // #define RT_USING_HW_ATOMIC
-#define ARCH_MM_MMU
+// #define ARCH_MM_MMU
 #define ARCH_RISCV
 #define ARCH_RISCV64
 #define ARCH_REMAP_KERNEL
