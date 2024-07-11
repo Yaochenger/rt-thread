@@ -13,8 +13,8 @@
 
 #include <encoding.h>
 
-#define __SIZE(bit) (1UL << (bit))
-#define __MASK(bit) (__SIZE(bit) - 1UL)
+#define __SIZE(bit) (1ULL << (bit))
+#define __MASK(bit) (__SIZE(bit) - 1ULL)
 #define __UMASK(bit) (~(__MASK(bit)))
 #define __MASKVALUE(value,maskvalue) ((value) & (maskvalue))
 #define __UMASKVALUE(value,maskvalue) ((value) & (~(maskvalue)))

@@ -49,7 +49,6 @@
 #define RT_MEMHEAP_FAST_MODE
 #define RT_USING_MEMHEAP_AS_HEAP
 #define RT_USING_MEMHEAP_AUTO_BINDING
-#define RT_USING_MEMTRACE
 #define RT_USING_HEAP
 /* end of Memory Management */
 #define RT_USING_DEVICE
