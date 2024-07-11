@@ -13,7 +13,7 @@
 #define RT_HOOK_USING_FUNC_PTR
 #define RT_USING_IDLE_HOOK
 #define RT_IDLE_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 16384
+#define IDLE_THREAD_STACK_SIZE 16384*5
 #define RT_USING_CPU_USAGE_TRACER
 
 /* kservice optimization */
@@ -71,7 +71,7 @@
 
 #define RT_USING_COMPONENTS_INIT
 #define RT_USING_USER_MAIN
-#define RT_MAIN_THREAD_STACK_SIZE 16384
+#define RT_MAIN_THREAD_STACK_SIZE 16384*10
 #define RT_MAIN_THREAD_PRIORITY 10
 
 /* DFS: device virtual file system */
