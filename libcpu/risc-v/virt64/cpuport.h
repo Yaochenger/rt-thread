@@ -15,9 +15,9 @@
 
 /* bytes of register width  */
 #ifdef ARCH_CPU_64BIT
-#define STORE                   sd
-#define LOAD                    ld
-#define REGBYTES                8
+#define STORE                   sw
+#define LOAD                    lw
+#define REGBYTES                4
 #else
 // error here, not portable
 #error "Not supported XLEN"

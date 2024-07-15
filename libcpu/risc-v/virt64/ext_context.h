@@ -28,38 +28,39 @@
  */
 
 #ifdef ENABLE_FPU
-#define FPU_CTX_F0_OFF   0   /* offsetof(fpu_context_t, fpustatus.f[0])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F1_OFF   8   /* offsetof(fpu_context_t, fpustatus.f[1])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F2_OFF   16  /* offsetof(fpu_context_t, fpustatus.f[2])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F3_OFF   24  /* offsetof(fpu_context_t, fpustatus.f[3])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F4_OFF   32  /* offsetof(fpu_context_t, fpustatus.f[4])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F5_OFF   40  /* offsetof(fpu_context_t, fpustatus.f[5])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F6_OFF   48  /* offsetof(fpu_context_t, fpustatus.f[6])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F7_OFF   56  /* offsetof(fpu_context_t, fpustatus.f[7])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F8_OFF   64  /* offsetof(fpu_context_t, fpustatus.f[8])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F9_OFF   72  /* offsetof(fpu_context_t, fpustatus.f[9])  - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F10_OFF  80  /* offsetof(fpu_context_t, fpustatus.f[10]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F11_OFF  88  /* offsetof(fpu_context_t, fpustatus.f[11]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F12_OFF  96  /* offsetof(fpu_context_t, fpustatus.f[12]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F13_OFF  104 /* offsetof(fpu_context_t, fpustatus.f[13]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F14_OFF  112 /* offsetof(fpu_context_t, fpustatus.f[14]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F15_OFF  120 /* offsetof(fpu_context_t, fpustatus.f[15]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F16_OFF  128 /* offsetof(fpu_context_t, fpustatus.f[16]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F17_OFF  136 /* offsetof(fpu_context_t, fpustatus.f[17]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F18_OFF  144 /* offsetof(fpu_context_t, fpustatus.f[18]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F19_OFF  152 /* offsetof(fpu_context_t, fpustatus.f[19]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F20_OFF  160 /* offsetof(fpu_context_t, fpustatus.f[20]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F21_OFF  168 /* offsetof(fpu_context_t, fpustatus.f[21]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F22_OFF  176 /* offsetof(fpu_context_t, fpustatus.f[22]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F23_OFF  184 /* offsetof(fpu_context_t, fpustatus.f[23]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F24_OFF  192 /* offsetof(fpu_context_t, fpustatus.f[24]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F25_OFF  200 /* offsetof(fpu_context_t, fpustatus.f[25]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F26_OFF  208 /* offsetof(fpu_context_t, fpustatus.f[26]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F27_OFF  216 /* offsetof(fpu_context_t, fpustatus.f[27]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F28_OFF  224 /* offsetof(fpu_context_t, fpustatus.f[28]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F29_OFF  232 /* offsetof(fpu_context_t, fpustatus.f[29]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F30_OFF  240 /* offsetof(fpu_context_t, fpustatus.f[30]) - offsetof(fpu_context_t, fpustatus.f[0]) */
-#define FPU_CTX_F31_OFF  248 /* offsetof(fpu_context_t, fpustatus.f[31]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_BASE_OFF   4 
+#define FPU_CTX_F0_OFF   FPU_CTX_BASE_OFF * 0   /* offsetof(fpu_context_t, fpustatus.f[0])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F1_OFF   FPU_CTX_BASE_OFF * 1    /* offsetof(fpu_context_t, fpustatus.f[1])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F2_OFF   FPU_CTX_BASE_OFF * 2   /* offsetof(fpu_context_t, fpustatus.f[2])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F3_OFF   FPU_CTX_BASE_OFF * 3   /* offsetof(fpu_context_t, fpustatus.f[3])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F4_OFF   FPU_CTX_BASE_OFF * 4   /* offsetof(fpu_context_t, fpustatus.f[4])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F5_OFF   FPU_CTX_BASE_OFF * 5   /* offsetof(fpu_context_t, fpustatus.f[5])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F6_OFF   FPU_CTX_BASE_OFF * 6   /* offsetof(fpu_context_t, fpustatus.f[6])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F7_OFF   FPU_CTX_BASE_OFF * 7   /* offsetof(fpu_context_t, fpustatus.f[7])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F8_OFF   FPU_CTX_BASE_OFF * 8   /* offsetof(fpu_context_t, fpustatus.f[8])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F9_OFF   FPU_CTX_BASE_OFF * 9   /* offsetof(fpu_context_t, fpustatus.f[9])  - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F10_OFF  FPU_CTX_BASE_OFF * 10   /* offsetof(fpu_context_t, fpustatus.f[10]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F11_OFF  FPU_CTX_BASE_OFF * 11   /* offsetof(fpu_context_t, fpustatus.f[11]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F12_OFF  FPU_CTX_BASE_OFF * 12   /* offsetof(fpu_context_t, fpustatus.f[12]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F13_OFF  FPU_CTX_BASE_OFF * 13  /* offsetof(fpu_context_t, fpustatus.f[13]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F14_OFF  FPU_CTX_BASE_OFF * 14  /* offsetof(fpu_context_t, fpustatus.f[14]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F15_OFF  FPU_CTX_BASE_OFF * 15  /* offsetof(fpu_context_t, fpustatus.f[15]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F16_OFF  FPU_CTX_BASE_OFF * 16  /* offsetof(fpu_context_t, fpustatus.f[16]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F17_OFF  FPU_CTX_BASE_OFF * 17  /* offsetof(fpu_context_t, fpustatus.f[17]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F18_OFF  FPU_CTX_BASE_OFF * 18  /* offsetof(fpu_context_t, fpustatus.f[18]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F19_OFF  FPU_CTX_BASE_OFF * 19  /* offsetof(fpu_context_t, fpustatus.f[19]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F20_OFF  FPU_CTX_BASE_OFF * 20  /* offsetof(fpu_context_t, fpustatus.f[20]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F21_OFF  FPU_CTX_BASE_OFF * 21  /* offsetof(fpu_context_t, fpustatus.f[21]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F22_OFF  FPU_CTX_BASE_OFF * 22  /* offsetof(fpu_context_t, fpustatus.f[22]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F23_OFF  FPU_CTX_BASE_OFF * 23  /* offsetof(fpu_context_t, fpustatus.f[23]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F24_OFF  FPU_CTX_BASE_OFF * 24  /* offsetof(fpu_context_t, fpustatus.f[24]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F25_OFF  FPU_CTX_BASE_OFF * 25  /* offsetof(fpu_context_t, fpustatus.f[25]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F26_OFF  FPU_CTX_BASE_OFF * 26  /* offsetof(fpu_context_t, fpustatus.f[26]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F27_OFF  FPU_CTX_BASE_OFF * 27  /* offsetof(fpu_context_t, fpustatus.f[27]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F28_OFF  FPU_CTX_BASE_OFF * 28  /* offsetof(fpu_context_t, fpustatus.f[28]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F29_OFF  FPU_CTX_BASE_OFF * 29  /* offsetof(fpu_context_t, fpustatus.f[29]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F30_OFF  FPU_CTX_BASE_OFF * 30  /* offsetof(fpu_context_t, fpustatus.f[30]) - offsetof(fpu_context_t, fpustatus.f[0]) */
+#define FPU_CTX_F31_OFF  FPU_CTX_BASE_OFF * 31  /* offsetof(fpu_context_t, fpustatus.f[31]) - offsetof(fpu_context_t, fpustatus.f[0]) */
 #endif /* ENABLE_FPU */
 
 /**
