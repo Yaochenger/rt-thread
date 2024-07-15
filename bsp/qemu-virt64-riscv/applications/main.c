@@ -25,14 +25,18 @@ int main(void)
 
     while (1)
     {
-        rt_thread_delay(5);
+        // rt_kprintf("main thread\r\n");
+        rt_thread_mdelay(1000);
     }   
 }
 
 void thread_user(void)
 {
+    int i =0;
     while (1)
     {
-        rt_thread_delay(5);
+        i++;
+        rt_kprintf("usr thread %d\r\n", i);
+        rt_thread_mdelay(1000);
     }
 }
