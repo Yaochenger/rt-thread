@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/rtthread.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "serverpath": "D:/RT-ThreadStudio/repo/Extract/Debugger_Support_Packages/WCH/WCH-LINK_Debugger/1.0.4/OpenOCD/bin/openocd",
+            "configFiles": [
+                "D:/RT-ThreadStudio/repo/Extract/Debugger_Support_Packages/WCH/WCH-LINK_Debugger/1.0.4/OpenOCD/bin/wch-riscv.cfg"
+            ],
+            "runToEntryPoint": "main",
+            "runToMain": true,          // false: run to reset handler
+            "showDevDebugOutput": "raw", // log level: parsed, raw, vscode(include vscode and raw)
+            "device": "CH32V307",
+            // "svdFile": "${workspaceFolder}/Misc/ch32v208xx.svd",
+            "toolchainPrefix": "D:/RT-ThreadStudio/repo/Extract/ToolChain_Support_Packages/WCH/RISC-V-GCC-WCH/8.2.0/bin/riscv-none-embed"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "configurations": [
+        {
+            "name": "rt-thread",
+            "defines": [
+                "RT_USING_LIBC",
+                "RT_USING_NEWLIBC",
+                "_POSIX_C_SOURCE=1",
+                "__RTTHREAD__"
+            ],
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "D:/RT-ThreadStudio/repo/Extract/ToolChain_Support_Packages/WCH/RISC-V-GCC-WCH/8.2.0/bin/riscv-none-embed-gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++11",
+            "compileCommands": "build/compile_commands.json",
+            "includePath": [
+                "applications",
+                "..\\Libraries\\ch32v30x_libraries\\bmsis",
+                "..\\Libraries\\ch32v30x_libraries\\bmsis\\include",
+                "..\\Libraries\\ch32v30x_libraries\\ch32v307_hal",
+                "..\\Libraries\\ch32v30x_libraries\\ch32v307_hal\\include",
+                "..\\..\\..\\..\\components\\libc\\compilers\\common\\include",
+                "..\\..\\..\\..\\components\\libc\\compilers\\newlib",
+                "..\\..\\..\\..\\components\\drivers\\include",
+                "board",
+                "..\\Libraries\\ch32_drivers",
+                "..\\..\\..\\..\\components\\finsh",
+                ".",
+                "..\\..\\..\\..\\include",
+                "..\\..\\..\\..\\libcpu\\risc-v\\common",
+                "..\\..\\..\\..\\components\\net\\lwip\\lwip-2.0.3\\src\\include",
+                "..\\..\\..\\..\\components\\net\\lwip\\lwip-2.0.3\\src\\include\\ipv4",
+                "..\\..\\..\\..\\components\\net\\lwip\\lwip-2.0.3\\src\\include\\netif",
+                "..\\..\\..\\..\\components\\net\\lwip\\port",
+                "..\\..\\..\\..\\components\\libc\\posix\\io\\epoll",
+                "..\\..\\..\\..\\components\\libc\\posix\\io\\eventfd",
+                "..\\..\\..\\..\\components\\libc\\posix\\io\\poll",
+                "..\\..\\..\\..\\components\\libc\\posix\\ipc",
+                "..\\..\\..\\..\\components\\net\\netdev\\include",
+                "..\\..\\..\\..\\components\\net\\sal\\include",
+                "..\\..\\..\\..\\components\\net\\sal\\include\\socket",
+                "..\\..\\..\\..\\components\\net\\sal\\impl",
+                "..\\..\\..\\..\\components\\net\\sal\\include\\socket\\sys_socket"
+            ]
+        }
+    ],
+    "version": 4
+}
