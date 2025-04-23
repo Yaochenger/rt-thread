@@ -1,0 +1,61 @@
+import os
+import sys
+import rtconfig
+from SCons.Script import *
+from termcolor import colored
+
+if os.getenv('RTT_ROOT'):
+    RTT_ROOT = os.getenv('RTT_ROOT')
+else:
+    RTT_ROOT = os.path.normpath(os.getcwd() + '/../../../..')
+
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+
+try:
+    from building import *
+except:
+    print('Cannot found RT-Thread root directory, please check RTT_ROOT')
+    print(RTT_ROOT)
+    exit(-1)
+
+TARGET = 'rtthread.' + rtconfig.TARGET_EXT
+
+print(colored('RT-Thread root directory: %s' % RTT_ROOT, 'green')) # E:\rt-thread
+print(colored('Building path: %s' % os.path.abspath('.'), 'green')) # E:\rt-thread\bsp\xuantie\smartl\e906fdq
+print(colored('Building target: %s' % TARGET, 'green')) # rtthread.elf
+
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'],
+    AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS,
+    CC = rtconfig.CC, CFLAGS = rtconfig.CFLAGS,
+    AR = rtconfig.AR, ARFLAGS = '-rc',
+    CXX = rtconfig.CXX, CXXFLAGS = rtconfig.CXXFLAGS,
+    LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS)
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)
+
+Export('RTT_ROOT')
+Export('rtconfig')
+
+SDK_ROOT = os.path.abspath('./')
+print(colored('SDK_ROOT: %s' % SDK_ROOT, 'green')) # E:\rt-thread\bsp\xuantie\smartl\e906fdq
+
+if os.path.exists(SDK_ROOT + '/Libraries'):
+    libraries_path_prefix = SDK_ROOT + '/Libraries'
+else:
+    libraries_path_prefix = os.path.dirname(SDK_ROOT) + '/Libraries'
+
+print(colored('libraries_path_prefix: %s' % libraries_path_prefix, 'green')) # E:\rt-thread\bsp\xuantie\smartl/Libraries
+SDK_LIB = libraries_path_prefix
+Export('SDK_LIB')
+
+# prepare building environment
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=True)
+
+bsp_vdir = 'build'
+library_vdir = 'build/libraries'
+
+# common include drivers
+objs.extend(SConscript(os.path.join(libraries_path_prefix, 'SConscript'), variant_dir=library_vdir, duplicate=0))
+
+# make a building
+DoBuilding(TARGET, objs)
