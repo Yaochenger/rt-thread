@@ -48,17 +48,17 @@ if PLATFORM == 'gcc':
     
     #CFLAGS = DEVICE
     #CFLAGS += ' -Wno-unused-function -Wpointer-arith -Wno-undef -Wall -Wl,-EL -ffunction-sections -fdata-sections -fno-inline-functions -fno-builtin -fno-strict-aliasing -fno-strength-reduce '
-    CFLAGS = ' -c -MP -MMD -Os -Wno-main -mcpu=e906fdp -mcmodel=medlow -Wno-unused-function -O0 -g -nostdlib -Wpointer-arith -Wno-undef -Wall -Wl,-EL -ffunction-sections -fdata-sections -fno-inline-functions -fno-builtin -fno-strict-aliasing -fno-strength-reduce -Os -g -Wall -Wunused -Wformat -Wformat-security -Warray-bounds -Wuninitialized -Wreturn-type -Wcomment -Wswitch -Wparentheses -Wlogical-op -DCONFIG_KERNEL_RTTHREAD=1 -D__RT_KERNEL_SOURCE__=1 -DCONFIG_CSI_V2=1 -DCONFIG_CSI=\"csi2\" -DCONFIG_LIBC_MINI_PRINTF_SUPPORT=1 -DCONFIG_SUPPORT_TSPEND=1 -DCONFIG_SUPPORT_IRQ_NESTED=1 -DCONFIG_XIP=1 -DCONFIG_ARCH_MAINSTACK=4096 -DCONFIG_ARCH_INTERRUPTSTACK=4096 -DCONFIG_CPU_XUANTIE_E906FDP=1 -DCONFIG_INIT_TASK_STACK_SIZE=4096 -DCONFIG_APP_TASK_STACK_SIZE=4096 -DCONFIG_SYSTICK_HZ=100 -DCONFIG_BOARD_SMARTL_EVB=1 -DCONFIG_DEBUG=1 -DCLI_CONFIG_STACK_SIZE=4096 '
+    CFLAGS = ' -c -MP -MMD -Os -Wno-main -mcpu=e906 -mcmodel=medlow -Wno-unused-function -O0 -g -nostdlib -Wpointer-arith -Wno-undef -Wall -Wl,-EL -ffunction-sections -fdata-sections -fno-inline-functions -fno-builtin -fno-strict-aliasing -fno-strength-reduce -Os -g -Wall -Wunused -Wformat -Wformat-security -Warray-bounds -Wuninitialized -Wreturn-type -Wcomment -Wswitch -Wparentheses -Wlogical-op -DCONFIG_KERNEL_RTTHREAD=1 -D__RT_KERNEL_SOURCE__=1 -DCONFIG_CSI_V2=1 -DCONFIG_CSI=\"csi2\" -DCONFIG_LIBC_MINI_PRINTF_SUPPORT=1 -DCONFIG_SUPPORT_TSPEND=1 -DCONFIG_SUPPORT_IRQ_NESTED=0 -DCONFIG_XIP=1 -DCONFIG_ARCH_MAINSTACK=4096 -DCONFIG_ARCH_INTERRUPTSTACK=4096 -DCONFIG_CPU_XUANTIE_E906FDP=1 -DCONFIG_INIT_TASK_STACK_SIZE=4096 -DCONFIG_APP_TASK_STACK_SIZE=4096 -DCONFIG_SYSTICK_HZ=100 -DCONFIG_BOARD_SMARTL_EVB=1 -DCONFIG_DEBUG=1 -DCLI_CONFIG_STACK_SIZE=4096 '
     
     # AFLAGS = DEVICE
     # AFLAGS += ' -x assembler-with-cpp -D__ASSEMBLY__ -I.'
-    AFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906fdp -mcmodel=medlow -D__ASSEMBLY__ -DCONFIG_KERNEL_RTTHREAD=1 -D__RT_KERNEL_SOURCE__=1 -DCONFIG_CSI_V2=1 -DCONFIG_CSI=\"csi2\" -DCONFIG_LIBC_MINI_PRINTF_SUPPORT=1 -DCONFIG_SUPPORT_TSPEND=1 -DCONFIG_SUPPORT_IRQ_NESTED=1 -DCONFIG_XIP=1 -DCONFIG_ARCH_MAINSTACK=4096 -DCONFIG_ARCH_INTERRUPTSTACK=4096 -DCONFIG_CPU_XUANTIE_E906FDP=1 -DCONFIG_INIT_TASK_STACK_SIZE=4096 -DCONFIG_APP_TASK_STACK_SIZE=4096 -DCONFIG_SYSTICK_HZ=100 -DCONFIG_BOARD_SMARTL_EVB=1 -DCONFIG_DEBUG=1 -DCLI_CONFIG_STACK_SIZE=4096'
+    AFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906 -mcmodel=medlow -D__ASSEMBLY__ -DCONFIG_KERNEL_RTTHREAD=1 -D__RT_KERNEL_SOURCE__=1 -DCONFIG_CSI_V2=1 -DCONFIG_CSI=\"csi2\" -DCONFIG_LIBC_MINI_PRINTF_SUPPORT=1 -DCONFIG_SUPPORT_TSPEND=1 -DCONFIG_SUPPORT_IRQ_NESTED=1 -DCONFIG_XIP=1 -DCONFIG_ARCH_MAINSTACK=4096 -DCONFIG_ARCH_INTERRUPTSTACK=4096 -DCONFIG_CPU_XUANTIE_E906FDP=1 -DCONFIG_INIT_TASK_STACK_SIZE=4096 -DCONFIG_APP_TASK_STACK_SIZE=4096 -DCONFIG_SYSTICK_HZ=100 -DCONFIG_BOARD_SMARTL_EVB=1 -DCONFIG_DEBUG=1 -DCLI_CONFIG_STACK_SIZE=4096'
     
     # LFLAGS = DEVICE
     # LFLAGS += ' -Wl,-zmax-page-size=1024 -Wl,--gc-sections,-cref,-wl,-Map=' + MAP_FILE
     # LFLAGS += ' -T ' + LINK_FILE
     
-    LFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906fdp -mcmodel=medlow -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,--whole-archive -Wl,--no-whole-archive -nostartfiles -Wl,--gc-sections -T "E:/rt-thread/bsp/xuantie/smartl/e906fdq/board/linker_scripts/gcc_flash_smartl.ld" '
+    LFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906 -mcmodel=medlow -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,--whole-archive -Wl,--no-whole-archive -nostartfiles -Wl,--gc-sections -T "E:/rt-thread/bsp/xuantie/smartl/e906fdq/board/linker_scripts/gcc_flash_smartl.ld" '
 
     CPATH = ''
     LPATH = ''

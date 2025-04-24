@@ -62,7 +62,7 @@ uint32_t csi_tick_get(void)
 void tick_irq_handler(void *arg)
 {
     csi_tick_increase();
-    csi_coret_config((soc_get_coretim_freq() / CONFIG_SYSTICK_HZ), CORET_IRQn);
+    csi_coret_config((soc_get_coretim_freq() / 20 / CONFIG_SYSTICK_HZ), CORET_IRQn);
 #if CONFIG_AOS_OSAL
     extern void aos_sys_tick_handler(void);
     aos_sys_tick_handler();

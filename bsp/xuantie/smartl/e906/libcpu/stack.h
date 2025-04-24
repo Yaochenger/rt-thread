@@ -52,10 +52,7 @@ struct rt_hw_stack_frame
     rt_ubase_t mstatus;    /*              - supervisor status register         33*/
 #if defined(__riscv_flen) && defined(ENABLE_FPU)
     rt_ubase_t fcsr;
-    rt_ubase_t f[CTX_FPU_REG_NR * (__riscv_flen >> 5)];  /* f0~f31 */
-#endif
-#if __riscv_dsp
-    rt_ubase_t vxsat;
+    rt_ubase_t f[CTX_FPU_REG_NR];      /* f0~f31 */
 #endif
 };
 

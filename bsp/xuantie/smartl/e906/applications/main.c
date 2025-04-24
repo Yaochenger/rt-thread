@@ -15,11 +15,16 @@
 #include <drv/uart.h>
 #include <board.h>
 
+void debug_info(void)
+{
+    rt_kprintf("Doing ... \r\n");
+}
+
 int main(void)
 {
     while (1)
     {
-        rt_kprintf("Hello RT-Thread!\n");
+        rt_kprintf("Hello RT-Thread! %d\r\n", rt_tick_get());
         rt_thread_mdelay(1000);
     }
 }
