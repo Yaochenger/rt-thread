@@ -13,7 +13,7 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include <stddef.h>
-#include <asm/riscv_csr.h>
+#include <../asm/riscv_csr.h>
 #include "cpuport.h"
 #include "stack.h"
 

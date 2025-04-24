@@ -156,46 +156,46 @@ void finsh_set_prompt_mode(rt_uint32_t prompt_mode)
 
 int finsh_getchar(void)
 {
-#ifdef RT_USING_DEVICE
-    char ch = 0;
-#ifdef RT_USING_POSIX_STDIO
-    if(read(rt_posix_stdio_get_console(), &ch, 1) > 0)
-    {
-        return ch;
-    }
-    else
-    {
-        return -1; /* EOF */
-    }
-#else
-    rt_device_t device;
+// #ifdef RT_USING_DEVICE
+//     char ch = 0;
+// #ifdef RT_USING_POSIX_STDIO
+//     if(read(rt_posix_stdio_get_console(), &ch, 1) > 0)
+//     {
+//         return ch;
+//     }
+//     else
+//     {
+//         return -1; /* EOF */
+//     }
+// #else
+//     rt_device_t device;
 
-    RT_ASSERT(shell != RT_NULL);
+//     RT_ASSERT(shell != RT_NULL);
 
-    device = shell->device;
-    if (device == RT_NULL)
-    {
-        return -1; /* EOF */
-    }
+//     device = shell->device;
+//     if (device == RT_NULL)
+//     {
+//         return -1; /* EOF */
+//     }
 
-    while (rt_device_read(device, -1, &ch, 1) != 1)
-    {
-        rt_sem_take(&shell->rx_sem, RT_WAITING_FOREVER);
-        if (shell->device != device)
-        {
-            device = shell->device;
-            if (device == RT_NULL)
-            {
-                return -1;
-            }
-        }
-    }
-    return ch;
-#endif /* RT_USING_POSIX_STDIO */
-#else
+//     while (rt_device_read(device, -1, &ch, 1) != 1)
+//     {
+//         rt_sem_take(&shell->rx_sem, RT_WAITING_FOREVER);
+//         if (shell->device != device)
+//         {
+//             device = shell->device;
+//             if (device == RT_NULL)
+//             {
+//                 return -1;
+//             }
+//         }
+//     }
+//     return ch;
+// #endif /* RT_USING_POSIX_STDIO */
+// #else
     extern char rt_hw_console_getchar(void);
     return rt_hw_console_getchar();
-#endif /* RT_USING_DEVICE */
+// #endif /* RT_USING_DEVICE */
 }
 
 #if !defined(RT_USING_POSIX_STDIO) && defined(RT_USING_DEVICE)

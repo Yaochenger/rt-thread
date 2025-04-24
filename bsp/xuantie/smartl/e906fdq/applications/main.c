@@ -10,20 +10,73 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
+#include <csi_config.h>
+#include <soc.h>
+#include <drv/uart.h>
+#include <board.h>
 
 int main(void)
 {
     while (1)
     {
-        // rt_kprintf("Hello RT-Thread!\n");
-        rt_thread_mdelay(500);
+        rt_kprintf("Hello RT-Thread!\n");
+        rt_thread_mdelay(1000);
     }
 }
 
-int usr_main(void)
+/*
+ *  The ranges of copy from/to are specified by following symbols
+ *    __erodata: LMA of start of the section to copy from. Usually end of rodata
+ *    __data_start__: VMA of start of the section to copy to
+ *    __data_end__: VMA of end of the section to copy to
+ *
+ *  All addresses must be aligned to 4 bytes boundary.
+ */
+void section_data_copy(void)
 {
-    while (1)
-    {
-        
+    extern unsigned long __erodata;
+    extern unsigned long __data_start__;
+    extern unsigned long __data_end__;
+
+    if (((unsigned long)&__erodata != (unsigned long)&__data_start__)) {
+        unsigned long src_addr = (unsigned long)&__erodata;
+        memcpy((void *)(&__data_start__), \
+               (void *)src_addr, \
+               (unsigned long)(&__data_end__) - (unsigned long)(&__data_start__));
+    }
+}
+
+/*
+ *  The BSS section is specified by following symbols
+ *    __bss_start__: start of the BSS section.
+ *    __bss_end__: end of the BSS section.
+ *
+ *  Both addresses must be aligned to 4 bytes boundary.
+ */
+void section_bss_clear(void)
+{
+    extern unsigned long __bss_start__;
+    extern unsigned long __bss_end__;
+
+    memset((void *)(&__bss_start__), \
+           0, \
+           (unsigned long)(&__bss_end__) - (unsigned long)(&__bss_start__));
+
+}
+
+void section_ram_code_copy(void)
+{
+    extern unsigned long __erodata;
+    extern unsigned long __data_start__;
+    extern unsigned long __data_end__;
+    extern unsigned long __ram_code_start__;
+    extern unsigned long __ram_code_end__;
+
+    if (((unsigned long)&__erodata != (unsigned long)&__data_start__)) {
+        unsigned long src_addr = (unsigned long)&__erodata;
+        src_addr += (unsigned long)(&__data_end__) - (unsigned long)(&__data_start__);
+        memcpy((void *)(&__ram_code_start__), \
+               (void *)src_addr, \
+               (unsigned long)(&__ram_code_end__) - (unsigned long)(&__ram_code_start__));
     }
 }

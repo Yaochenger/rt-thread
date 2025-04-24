@@ -4,6 +4,7 @@ import os
 cwd     = GetCurrentDir()
 CPPPATH = [cwd]
 src = ['main.c']
+src += ['board_uart.c']
 
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
 

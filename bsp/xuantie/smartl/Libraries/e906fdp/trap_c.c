@@ -20,10 +20,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <csi_core.h>
+#include <rtthread.h>
+
 #if defined(AOS_COMP_DEBUG) && (AOS_COMP_DEBUG > 0)
 #include <debug/dbg.h>
 #else
-#define printk printf
+#define printk rt_kprintf
 #endif
 
 void (*trap_c_callback)(void);

@@ -124,7 +124,6 @@ _start:
 Reset_Handler:
 .option push
 .option norelax
-    j      _start
     la      gp, __global_pointer$
 .option pop
     la      a0, Default_Handler
@@ -144,7 +143,7 @@ Reset_Handler:
     jal     SystemInit
 #endif
 
-    jal     pre_main
+    jal     rtthread_startup
 
     .size   Reset_Handler, . - Reset_Handler
 

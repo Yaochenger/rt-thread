@@ -10,7 +10,7 @@
  * 2021/02/02     lizhirui     Add userspace support
  */
 
-#include <asm/riscv_csr.h>
+#include <../asm/riscv_csr.h>
 #include "stackframe.h"
 
 .equ RISCV_MSTATUS_MIE,        (1<<3)       /*machine-level interrupt bit*/

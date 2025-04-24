@@ -108,6 +108,6 @@ void SystemInit(void)
     section_init();
     interrupt_init();
     soc_set_sys_freq(20000000);
-    csi_tick_init();
+    // csi_tick_init();
 }
 
