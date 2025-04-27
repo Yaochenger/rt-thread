@@ -80,6 +80,10 @@
 /* kservice options */
 
 /* end of kservice options */
+#define RT_USING_DEBUG
+#define RT_DEBUGING_ASSERT
+#define RT_DEBUGING_COLOR
+#define RT_DEBUGING_CONTEXT
 
 /* Inter-Thread communication */
 
@@ -111,7 +115,6 @@
 #define RT_USING_USER_MAIN
 #define RT_MAIN_THREAD_STACK_SIZE 2048
 #define RT_MAIN_THREAD_PRIORITY 10
-#define RT_USING_LEGACY
 #define RT_USING_MSH
 #define RT_USING_FINSH
 #define FINSH_USING_MSH
@@ -133,6 +136,15 @@
 
 /* Device Drivers */
 
+#define RT_USING_DEVICE_IPC
+#define RT_UNAMED_PIPE_NUMBER 64
+#define RT_USING_SYSTEM_WORKQUEUE
+#define RT_SYSTEM_WORKQUEUE_STACKSIZE 2048
+#define RT_SYSTEM_WORKQUEUE_PRIORITY 23
+#define RT_USING_SERIAL
+#define RT_USING_SERIAL_V1
+#define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_SERIAL_BYPASS
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -372,6 +384,8 @@
 
 /* On-chip Peripheral Drivers */
 
+#define BSP_USING_UART
+#define BSP_USING_UART1
 /* end of On-chip Peripheral Drivers */
 /* end of Hardware Drivers Config */
 

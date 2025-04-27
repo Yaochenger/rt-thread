@@ -58,7 +58,7 @@ if PLATFORM == 'gcc':
     # LFLAGS += ' -Wl,-zmax-page-size=1024 -Wl,--gc-sections,-cref,-wl,-Map=' + MAP_FILE
     # LFLAGS += ' -T ' + LINK_FILE
     
-    LFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906 -mcmodel=medlow -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,--whole-archive -Wl,--no-whole-archive -nostartfiles -Wl,--gc-sections -T "E:/rt-thread/bsp/xuantie/smartl/e906fdq/board/linker_scripts/gcc_flash_smartl.ld" '
+    LFLAGS = '-MP -MMD -Os -Wno-main -mcpu=e906 -mcmodel=medlow -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,-zmax-page-size=1024 -Wl,-Map=yoc.map -Wl,--whole-archive -Wl,--no-whole-archive -nostartfiles -Wl,--gc-sections -T "E:/rt-thread/bsp/xuantie/smartl/e906/board/linker_scripts/gcc_flash_smartl.ld" '
 
     CPATH = ''
     LPATH = ''

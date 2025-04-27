@@ -22,11 +22,7 @@ void debug_info(void)
 
 int main(void)
 {
-    while (1)
-    {
-        rt_kprintf("Hello RT-Thread! %d\r\n", rt_tick_get());
-        rt_thread_mdelay(1000);
-    }
+    rt_kprintf("Hello RT-Thread!\r\n");
 }
 
 /*

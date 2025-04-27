@@ -33,7 +33,12 @@ void rt_hw_board_init()
         rt_system_heap_init((void *)&__heap_start, (void *)&__heap_end);
     #endif
 
-    board_uart_init();
+    extern int rt_hw_usart_init(void);
+    rt_hw_usart_init();
+
+#ifdef RT_USING_CONSOLE
+    rt_console_set_device(RT_CONSOLE_DEVICE_NAME);
+#endif
   
     #ifdef RT_USING_COMPONENTS_INIT
         rt_components_board_init();
