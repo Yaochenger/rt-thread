@@ -49,6 +49,10 @@ tag: bsp_cvitek
 path: bsp/cvitek
 owners: Chen Wang(unicornx)<unicorn_wang@outlook.com>
 
+tag: bsp_gd32105c-eval
+path: bsp/gd32/arm/gd32105c-eval
+owners: Xiansong Cao(CXSforHPU)<19511928573@163.com>
+
 tag: bsp_gd32470z-lckfb
 path: bsp/gd32/arm/gd32470z-lckfb
 owners: Wu Ying Xiang(godmial)<2633967641@qq.com>
@@ -89,9 +93,17 @@ tag: bsp_stm32g030-tiny-board
 path: bsp/stm32/stm32g030-tiny-board
 owners: 下里巴人(hywing)<hywing.sir@qq.com>
 
+tag: bsp_stm32h743-st-nucleo
+path: bsp/stm32/stm32h743-st-nucleo
+owners: PengXu(LittleGreyG)<18825981694@163.com>
+
+tag: bsp_stm32h750-artpi
+path: bsp/stm32/stm32h750-artpi
+owners: PengXu(LittleGreyG)<18825981694@163.com>
+
 tag: documentation
 path: documentation
-owners: Chen Wang(unicornx)<unicorn_wang@outlook.com>, Guorui Li(GorrayLi)<liguorui1213@163.com>, Lian Wang(lianux-mm)<lianux.mm@gmail.com>
+owners: Chen Wang(unicornx)<unicorn_wang@outlook.com>, Guorui Li(GorrayLi)<liguorui1213@163.com>, Lian Wang(lianux-mm)<lianux.mm@gmail.com>, Xiansong Cao(CXSforHPU)<19511928573@163.com>
 
 tag: driver_can
 path: components/drivers/can
@@ -112,6 +124,10 @@ owners: Liya Huang(wdfk-prog)<1425075683@qq.com>
 tag: driver_ymodem
 path: components/utilities/ymodem
 owners: Liya Huang(wdfk-prog)<1425075683@qq.com>
+
+tag: fal
+path: components/fal
+owners: Yucai Liu(illustriousness)<1486344514@qq.com>
 
 tag: kernel
 path: src
