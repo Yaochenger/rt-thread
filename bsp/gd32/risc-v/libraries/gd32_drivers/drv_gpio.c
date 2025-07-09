@@ -195,6 +195,10 @@ static void gd32_pin_mode(rt_device_t dev, rt_base_t pin, rt_uint8_t mode)
     rcu_periph_clock_enable(index->clk);
 
     pin_mode = GPIO_MODE_OUT_PP;
+    
+#if defined(SOC_GD32VW553H)
+
+#endif /* SOC_GD32VW553H */
 
     switch(mode)
     {

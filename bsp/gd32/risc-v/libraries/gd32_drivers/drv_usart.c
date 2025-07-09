@@ -232,10 +232,18 @@ void gd32_uart_gpio_init(struct gd32_uart *uart)
     rcu_periph_clock_enable(uart->per_clk);
 
     /* connect port to USARTx_Tx */
+#if defined SOC_SERIES_GD32VF103V
     gpio_init(uart->tx_port, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, uart->tx_pin);
+#else
+    gpio_init(uart->tx_port, GPIO_MODE_AF, GPIO_OSPEED_MAX, uart->tx_pin);   
+#endif
 
     /* connect port to USARTx_Rx */
+#if defined SOC_SERIES_GD32VF103V
     gpio_init(uart->rx_port, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, uart->rx_pin);
+#else
+    gpio_init(uart->rx_port, GPIO_MODE_ANALOG, GPIO_OSPEED_MAX, uart->rx_pin);   
+#endif
 }
 
 /**
@@ -319,7 +327,11 @@ static rt_err_t gd32_uart_control(struct rt_serial_device *serial, int cmd, void
 
         break;
     case RT_DEVICE_CTRL_SET_INT:
-        eclic_set_nlbits(ECLIC_GROUP_LEVEL3_PRIO1);
+// #if defined SOC_SERIES_GD32VF103V
+//         eclic_set_nlbits(ECLIC_GROUP_LEVEL3_PRIO1);
+// #else
+//         eclic_set_nlbits(ECLIC_PRIGROUP_LEVEL3_PRIO1); 
+// #endif
         /* enable rx irq */
         eclic_irq_enable(uart->irqn, 1, 0);
         /* enable interrupt */
