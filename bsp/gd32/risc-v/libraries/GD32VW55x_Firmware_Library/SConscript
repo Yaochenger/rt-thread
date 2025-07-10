@@ -16,6 +16,7 @@ GD32VW55x_standard_peripheral/Source/gd32vw55x_gpio.c
 GD32VW55x_standard_peripheral/Source/gd32vw55x_rcu.c
 GD32VW55x_standard_peripheral/Source/gd32vw55x_exti.c
 GD32VW55x_standard_peripheral/Source/gd32vw55x_eclic.c
+GD32VW55x_standard_peripheral/Source/gd32vw55x_syscfg.c
 ''')
 
 if GetDepend(['RT_USING_SERIAL']):

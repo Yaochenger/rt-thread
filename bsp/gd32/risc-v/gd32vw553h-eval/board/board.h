@@ -11,7 +11,7 @@
 #ifndef __BOARD__
 #define __BOARD__
 #include "gd32vw55x.h"
-// #include "drv_gpio.h"
+#include "drv_gpio.h"
 extern void *_end;
 extern void *_heap_end;
 #define HEAP_BEGIN  &_end
