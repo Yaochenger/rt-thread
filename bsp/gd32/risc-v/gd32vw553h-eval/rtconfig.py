@@ -17,7 +17,7 @@ if os.getenv('RTT_ROOT'):
 # EXEC_PATH is the compiler execute path, for example, CodeSourcery, Keil MDK, IAR
 if  CROSS_TOOL == 'gcc':
     PLATFORM    = 'gcc'
-    EXEC_PATH   = EXEC_PATH   = r'E:/GD32VW5/Tools/GD32EmbeddedBuilder_v1.5.2.30854/Tools/RISC-V Embedded GCC/8.2.0-2.2-20190521-0004/bin'
+    EXEC_PATH   = r'E:/GD32VW5/Tools/GD32EmbeddedBuilder_v1.5.2.30854/Tools/RISC-V Embedded GCC/8.2.0-2.2-20190521-0004/bin'
 else:
     print('Please make sure your toolchains is GNU GCC!')
     exit(0)
@@ -43,21 +43,20 @@ if PLATFORM == 'gcc':
     OBJDUMP = PREFIX + 'objdump'
     OBJCPY = PREFIX + 'objcopy'
 
-    DEVICE = ' -march=rv32imafdc -mcmodel=medany -msmall-data-limit=8 -mdiv -mabi=ilp32d -O2 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections '
-    CFLAGS = DEVICE
-    CFLAGS += ' -std=gnu11 -DUSE_STDPERIPH_DRIVE -save-temps=obj'
-    
-    AFLAGS = '-c'+ DEVICE + ' -x assembler-with-cpp'
-    
-    LFLAGS = ' -march=rv32imafdc -mcmodel=medany -msmall-data-limit=8 -mdiv -mabi=ilp32d -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g -Wl,-Map=' + MAP_FILE
-    LFLAGS += ' -T ' + LINK_FILE
-    LFLAGS += ' -nostartfiles -Xlinker --gc-sections --specs=nano.specs --specs=nosys.specs '
+    DEVICE = ' -march=rv32imafdc -mcmodel=medany -msmall-data-limit=8 -mdiv -mabi=ilp32d -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections '
+
+    # C Compilation Parameters
+    CFLAGS = DEVICE + ' -std=gnu11 -DUSE_STDPERIPH_DRIVE -save-temps=obj'
+    # Assembly Compilation Parameters
+    AFLAGS = DEVICE + '-c'+ ' -x assembler-with-cpp'
+    # Linking Parameters
+    LFLAGS = DEVICE + ' -nostartfiles -Xlinker --gc-sections --specs=nano.specs --specs=nosys.specs ' + ' -T ' + LINK_FILE + ' -Wl,-Map=' + MAP_FILE
 
     CPATH = ''
     LPATH = ''
 
     if BUILD == 'debug':
-        CFLAGS += ' -O2 -g3'
+        CFLAGS += ' -O0 -g3'
         AFLAGS += ' -g3'
     else:
         CFLAGS += ' -O2'
