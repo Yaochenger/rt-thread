@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
  * Change Logs:
  * Date           Author       Notes
  * 2021-08-20     BruceOu      first implementation
+ * 2025-07-11     Wangshun     adapt to GD32VV553H
  */
 
 #include "drv_usart.h"
@@ -157,9 +158,9 @@ static const struct gd32_uart uart_obj[] = {
     {
         USART0,                                 // uart peripheral index
         USART0_IRQn,                            // uart iqrn
-        RCU_USART0, RCU_GPIOA, RCU_GPIOA,       // periph clock, tx gpio clock, rt gpio clock
-        GPIOA, GPIO_PIN_9,           // tx port, tx pin
-        GPIOA, GPIO_PIN_10,          // rx port, rx pin
+        RCU_USART0, RCU_GPIOB, RCU_GPIOA,       // periph clock, tx gpio clock, rt gpio clock
+        GPIOB, GPIO_PIN_15,           // tx port, tx pin
+        GPIOA, GPIO_PIN_8,          // rx port, rx pin
         &serial0,
         "uart0",
     },
@@ -231,18 +232,18 @@ void gd32_uart_gpio_init(struct gd32_uart *uart)
     rcu_periph_clock_enable(uart->rx_gpio_clk);
     rcu_periph_clock_enable(uart->per_clk);
 
-    /* connect port to USARTx_Tx */
+    /* connect port */
 #if defined SOC_SERIES_GD32VF103V
     gpio_init(uart->tx_port, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, uart->tx_pin);
-#else
-    gpio_init(uart->tx_port, GPIO_MODE_AF, GPIO_OSPEED_MAX, uart->tx_pin);   
-#endif
-
-    /* connect port to USARTx_Rx */
-#if defined SOC_SERIES_GD32VF103V
     gpio_init(uart->rx_port, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, uart->rx_pin);
 #else
-    gpio_init(uart->rx_port, GPIO_MODE_ANALOG, GPIO_OSPEED_MAX, uart->rx_pin);   
+    gpio_af_set(uart->tx_port, GPIO_AF_8, uart->tx_pin);
+    gpio_mode_set(uart->tx_port, GPIO_MODE_AF, GPIO_PUPD_PULLUP, uart->tx_pin);
+    gpio_output_options_set(uart->tx_port, GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, uart->tx_pin);
+
+    gpio_af_set(uart->rx_port, GPIO_AF_2, uart->rx_pin);
+    gpio_mode_set(uart->rx_port, GPIO_MODE_AF, GPIO_PUPD_PULLUP, uart->rx_pin);
+    gpio_output_options_set(uart->rx_port, GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, uart->rx_pin);
 #endif
 }
 
@@ -327,11 +328,6 @@ static rt_err_t gd32_uart_control(struct rt_serial_device *serial, int cmd, void
 
         break;
     case RT_DEVICE_CTRL_SET_INT:
-// #if defined SOC_SERIES_GD32VF103V
-//         eclic_set_nlbits(ECLIC_GROUP_LEVEL3_PRIO1);
-// #else
-//         eclic_set_nlbits(ECLIC_PRIGROUP_LEVEL3_PRIO1); 
-// #endif
         /* enable rx irq */
         eclic_irq_enable(uart->irqn, 1, 0);
         /* enable interrupt */
@@ -454,7 +450,4 @@ int rt_hw_usart_init(void)
 
     return result;
 }
-
-//INIT_BOARD_EXPORT(rt_hw_usart_init);
-
 #endif

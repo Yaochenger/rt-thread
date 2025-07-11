@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
  * Change Logs:
  * Date           Author       Notes
  * 2022-06-04     BruceOu      first implementation
+ * 2025-07-10     WangShun     fix for GD32VW553H_EVAL
  */
 
 #include <stdio.h>
@@ -13,7 +14,7 @@
 #include <rtdevice.h>
 #include <board.h>
 
-/* defined the LED1 pin: PA4 */
+/* LED1 ~ LED3 pin: PA4 PA5 PA6 */
 #define LED1_PIN GET_PIN(A, 4)
 
 int main(void)
