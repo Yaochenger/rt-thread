@@ -10,7 +10,6 @@
  */
 
 #include <board.h>
-#include <gd32f30x.h>
 #include <rtdevice.h>
 #include <rtthread.h>
 
@@ -42,19 +41,35 @@ struct gd32_pwm
 
 static struct gd32_pwm gd32_pwm_obj[] = {
 #ifdef RT_USING_PWM1
+#if defined SOC_SERIES_GD32F30x
     {.tim_handle = {3, GPIOB, GPIO_PIN_8, 2, "pwm1"}},
+#elif defined SOC_SERIES_GD32F5xx
+    {.tim_handle = {1, GPIOB, GPIO_PIN_9, 1, "pwm1"}},
+#endif
 #endif
 
 #ifdef RT_USING_PWM2
+#if defined SOC_SERIES_GD32F30x
     {.tim_handle = {3, GPIOB, GPIO_PIN_8, 2, "pwm2"}},
+#elif defined SOC_SERIES_GD32F5xx
+    {.tim_handle = {1, GPIOB, GPIO_PIN_10, 2, "pwm2"}},
+#endif
 #endif
 
 #ifdef RT_USING_PWM3
+#if defined SOC_SERIES_GD32F30x
     {.tim_handle = {3, GPIOB, GPIO_PIN_8, 2, "pwm3"}},
+#elif defined SOC_SERIES_GD32F5xx
+    {.tim_handle = {1, GPIOB, GPIO_PIN_11, 3, "pwm3"}},
+#endif
 #endif
 
 #ifdef RT_USING_PWM4
+#if defined SOC_SERIES_GD32F30x
     {.tim_handle = {3, GPIOB, GPIO_PIN_8, 2, "pwm4"}},
+#elif defined SOC_SERIES_GD32F5xx
+    {.tim_handle = {0, GPIOD, GPIO_PIN_12, 1, "pwm4"}},
+#endif
 #endif
 
 #ifdef RT_USING_PWM5
@@ -325,7 +340,10 @@ static void rcu_config(void)
         gpio_clock_enable(gd32_timer_periph_list.Port[i]);
     }
 
-    rcu_periph_clock_enable(RCU_AF);
+#if defined SOC_SERIES_GD32F30x
+     rcu_periph_clock_enable(RCU_AF);
+#elif defined SOC_SERIES_GD32F5xx
+#endif /* SOC_SERIES_GD32F30x */
 
     for (i = 0; i < sizeof(gd32_timer_periph_list.TimerIndex) / sizeof(gd32_timer_periph_list.TimerIndex[0]); ++i)
     {
@@ -347,7 +365,13 @@ static void gpio_config(void)
     /* config the GPIO as analog mode */
     for (i = 0; i < sizeof(gd32_pwm_obj) / sizeof(gd32_pwm_obj[0]); ++i)
     {
+#if defined SOC_SERIES_GD32F30x
         gpio_init(gd32_pwm_obj[i].tim_handle.Port, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, gd32_pwm_obj[i].tim_handle.pin);
+#elif defined SOC_SERIES_GD32F5xx
+        gpio_mode_set(gd32_pwm_obj[i].tim_handle.Port, GPIO_MODE_AF, GPIO_PUPD_NONE, gd32_pwm_obj[i].tim_handle.pin);
+        gpio_output_options_set(gd32_pwm_obj[i].tim_handle.Port, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, gd32_pwm_obj[i].tim_handle.pin);
+        gpio_af_set(gd32_pwm_obj[i].tim_handle.Port, GPIO_AF_1, gd32_pwm_obj[i].tim_handle.pin);
+#endif /* SOC_SERIES_GD32F30x */
     }
 }
 

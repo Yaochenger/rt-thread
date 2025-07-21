@@ -92,13 +92,20 @@ static const struct gd32_spi spi_bus_obj[] = {
         RCU_SPI3,
         RCU_GPIOE,
         &spi_bus3,
-        GPIOB,
-#if defined SOC_SERIES_GD32F4xx
+        GPIOE,
+#if defined (SOC_SERIES_GD32F4xx) || defined(SOC_SERIES_GD32F5xx)
         GPIO_AF_5,
 #endif
+			
+#if defined SOC_SERIES_GD32F4xx			
         GPIO_PIN_2,
         GPIO_PIN_5,
         GPIO_PIN_6,
+#elif defined SOC_SERIES_GD32F5xx			
+        GPIO_PIN_12,
+        GPIO_PIN_13,
+        GPIO_PIN_14,			
+#endif			
     },
 #endif /* BSP_USING_SPI3 */
 
@@ -141,12 +148,12 @@ static void gd32_spi_init(struct gd32_spi *gd32_spi)
     rcu_periph_clock_enable(gd32_spi->spi_clk);
     rcu_periph_clock_enable(gd32_spi->gpio_clk);
 
-#if defined SOC_SERIES_GD32F4xx
+#if defined (SOC_SERIES_GD32F4xx) || defined(SOC_SERIES_GD32F5xx)
     /*GPIO pin configuration*/
     gpio_af_set(gd32_spi->spi_port, gd32_spi->alt_func_num, gd32_spi->sck_pin | gd32_spi->mosi_pin | gd32_spi->miso_pin);
 
     gpio_mode_set(gd32_spi->spi_port, GPIO_MODE_AF, GPIO_PUPD_NONE, gd32_spi->sck_pin | gd32_spi->mosi_pin | gd32_spi->miso_pin);
-    gpio_output_options_set(gd32_spi->spi_port, GPIO_OTYPE_PP, GPIO_OSPEED_MAX, gd32_spi->sck_pin | gd32_spi->mosi_pin | gd32_spi->miso_pin);
+    gpio_output_options_set(gd32_spi->spi_port, GPIO_OTYPE_PP, GPIO_OSPEED_10MHZ, gd32_spi->sck_pin | gd32_spi->mosi_pin | gd32_spi->miso_pin);
 #else
     /* Init SPI SCK MOSI */
     gpio_init(gd32_spi->spi_port, GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, gd32_spi->sck_pin | gd32_spi->mosi_pin);

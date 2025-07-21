@@ -151,6 +151,8 @@
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_PWM
+#define RT_USING_SPI
 #define RT_USING_PIN
 /* end of Device Drivers */
 
@@ -418,6 +420,13 @@
 #define BSP_USING_GPIO
 #define BSP_USING_UART
 #define BSP_USING_UART0
+#define BSP_USING_PWM
+#define RT_USING_PWM1
+#define RT_USING_PWM2
+#define RT_USING_PWM3
+#define RT_USING_PWM4
+#define BSP_USING_SPI
+#define BSP_USING_SPI3
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
