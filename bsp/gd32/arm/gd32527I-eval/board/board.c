@@ -63,16 +63,6 @@ void SysTick_Handler(void)
  */
 void rt_hw_board_init()
 {
-    /* NVIC Configuration */
-#define NVIC_VTOR_MASK              0x3FFFFF80
-#ifdef  VECT_TAB_RAM
-    /* Set the Vector Table base location at 0x10000000 */
-    SCB->VTOR  = (0x10000000 & NVIC_VTOR_MASK);
-#else  /* VECT_TAB_FLASH  */
-    /* Set the Vector Table base location at 0x08000000 */
-    SCB->VTOR  = (0x08000000 & NVIC_VTOR_MASK);
-#endif
-
     SystemClock_Config();
 
 #ifdef RT_USING_SERIAL
