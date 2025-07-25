@@ -266,7 +266,7 @@ typedef int (*init_fn_t)(void);
 #define RT_ALIGN_DOWN(size, align)      ((size) & ~((align) - 1))
 
 /**
- * @addtogroup group_kernel_object
+ * @addtogroup group_object_management
  */
 
 /**@{*/
@@ -578,7 +578,7 @@ typedef struct rt_timer *rt_timer_t;
 /**@}*/
 
 /**
- * @addtogroup group_Signal
+ * @addtogroup group_signal
  */
 /**@{*/
 
